@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- The frontend-->
+<!-- <!doctype html> means no html tags nor body tags -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<div class="container">
+  <br>
+<div class="jumbotron">
+  <h1 class="display-4">Send message</h1>
+  <br>
+  <input id="name" class="form-control" placeholder="Name">
+  <br>
+  <textarea id="message" class="form-control" placeholder="message"></textarea>
+  <br>
+  <button id="send" class="btn btn-success">Send</button>
+</div>
+
+<div id="messages">
+
+</div>
+
+</div>
+<script>
+// importing socket.io
+var socket = io();
+
+// document ready function
+$(() => {
+  $("#send").click(() => {
+    var message = { name: $("#name").val(), message: $("#message").val() }
+    postMessages(message);
+  });
+getMessages();
+});
+
+// don't know lol
+socket.on('message', addMessages)
+
+// append message
+function addMessages(message){
+  $('#messages').append(`<h4> ${message.name} </h4> <p> ${message.message}</p>`);
+}
+
+
+// ajax request, GET request for to messages url
+function getMessages() {
+  $.get('http://localhost:3000/messages', (data) => {
+    data.forEach(addMessages);
+  });
+}
+
+// ajax request, POST request for to messages url
+function postMessages(message) {
+  $.post('http://localhost:3000/messages', message);
+}
+
+</script>
