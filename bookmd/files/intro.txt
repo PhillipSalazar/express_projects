@@ -1,0 +1,10 @@
+<h1>Make-n-taste!!!</h1>
+
+
+
+<p>
+Welcome to Make-n-taste!!! A great place to learn about good
+tasting and wholesome cooking. Make-n-taste is truly about
+trying new things and making cooking fun. So
+we have recipes being added every week. So go and explore and cook!
+</p>

@@ -1,0 +1,17 @@
+body {
+  background-color: #ff9933 !important;
+}
+
+.lists {
+  border: 2px solid grey;
+  border-radius: 10px;
+}
+
+.lists ul {
+  list-style-type: none;
+}
+
+.content {
+  background-color: white;
+  border-radius: 10px;
+}
